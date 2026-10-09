@@ -11,6 +11,26 @@ This sample implements the architecture in `../playwright-ai-architecture.puml`:
 - `RecoveryManager` performs bounded retries, reloads the page between attempts, and captures a screenshot for terminal failures.
 - `demo/` provides a local application under test, so the example is self-contained.
 
+## Explain it to me like I'm five
+
+Imagine you have a little robot that checks whether a website works:
+
+1. The JSON file is the robot's to-do list. It says things like “click the
+   Add to cart button.”
+2. The Playwright adapters are the robot's hands. They click buttons, type into
+   boxes, and check that the right words appear.
+3. A locator is the robot's way of finding something on the screen. It tries
+   the most trustworthy description first, then tries backup descriptions if
+   the page has changed.
+4. If the robot makes a mistake, the recovery manager lets it try again,
+   reloads the page, and takes a screenshot if the problem cannot be fixed.
+5. The test spec is the robot's schedule. It reads every item in the JSON
+   to-do list, so adding another test usually only means adding another JSON
+   object.
+
+In short: **JSON says what to do, the adapters do it, and the recovery code
+helps when the website is a little different than expected.**
+
 ## Run
 
 Requires Node.js 20 or newer.
