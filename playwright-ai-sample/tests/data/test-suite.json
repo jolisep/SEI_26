@@ -1,0 +1,132 @@
+{
+  "suiteName": "AI-adaptive checkout evaluation",
+  "tests": [
+    {
+      "testName": "customer can complete a checkout",
+      "steps": [
+        {
+          "stepName": "find and add a product",
+          "actions": [
+            {
+              "type": "fill",
+              "value": "Notebook",
+              "strategies": [
+                { "kind": "role", "role": "searchbox", "name": "Search products", "confidence": 0.9 },
+                { "kind": "testId", "value": "product-search", "confidence": 0.85 },
+                { "kind": "css", "selector": "#product-search", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//input[@type='search']", "confidence": 0.4 }
+              ]
+            },
+            {
+              "type": "click",
+              "strategies": [
+                { "kind": "role", "role": "button", "name": "Add to cart", "confidence": 0.9 },
+                { "kind": "testId", "value": "add-to-cart", "confidence": 0.85 },
+                { "kind": "css", "selector": "button[data-action='add-cart']", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//button[contains(., 'Add')]", "confidence": 0.4 }
+              ]
+            }
+          ]
+        },
+        {
+          "stepName": "enter customer details",
+          "actions": [
+            {
+              "type": "fill",
+              "value": "Ada Lovelace",
+              "strategies": [
+                { "kind": "role", "role": "textbox", "name": "Name", "confidence": 0.9 },
+                { "kind": "testId", "value": "customer-name", "confidence": 0.85 },
+                { "kind": "css", "selector": "#customer-name", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//input[@name='customerName']", "confidence": 0.4 }
+              ]
+            },
+            {
+              "type": "fill",
+              "value": "ada@example.com",
+              "strategies": [
+                { "kind": "role", "role": "textbox", "name": "Email", "confidence": 0.9 },
+                { "kind": "testId", "value": "customer-email", "confidence": 0.85 },
+                { "kind": "css", "selector": "#customer-email", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//input[@name='customerEmail']", "confidence": 0.4 }
+              ]
+            },
+            {
+              "type": "fill",
+              "value": "1 Example Street",
+              "strategies": [
+                { "kind": "role", "role": "textbox", "name": "Address", "confidence": 0.9 },
+                { "kind": "testId", "value": "address", "confidence": 0.85 },
+                { "kind": "css", "selector": "#address", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//textarea[@name='address']", "confidence": 0.4 }
+              ]
+            }
+          ]
+        },
+        {
+          "stepName": "apply a coupon and place the order",
+          "actions": [
+            {
+              "type": "fill",
+              "value": "SAVE10",
+              "strategies": [
+                { "kind": "role", "role": "textbox", "name": "Coupon code", "confidence": 0.9 },
+                { "kind": "testId", "value": "coupon", "confidence": 0.85 },
+                { "kind": "css", "selector": "#coupon", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//input[@id='coupon']", "confidence": 0.4 }
+              ]
+            },
+            {
+              "type": "click",
+              "strategies": [
+                { "kind": "role", "role": "button", "name": "Apply coupon", "confidence": 0.9 },
+                { "kind": "testId", "value": "apply-coupon", "confidence": 0.85 },
+                { "kind": "css", "selector": "button[data-testid='apply-coupon']", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//button[contains(., 'coupon')]", "confidence": 0.4 }
+              ]
+            },
+            {
+              "type": "assertText",
+              "value": "Coupon applied",
+              "strategies": [
+                { "kind": "role", "role": "status", "name": "Coupon message", "confidence": 0.9 },
+                { "kind": "testId", "value": "coupon-message", "confidence": 0.85 },
+                { "kind": "css", "selector": "[data-testid='coupon-message']", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//p[contains(., 'Coupon')]", "confidence": 0.4 }
+              ]
+            },
+            {
+              "type": "click",
+              "strategies": [
+                { "kind": "role", "role": "button", "name": "Place order", "confidence": 0.9 },
+                { "kind": "testId", "value": "place-order", "confidence": 0.85 },
+                { "kind": "css", "selector": "button[data-testid='place-order']", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//button[contains(., 'order')]", "confidence": 0.4 }
+              ]
+            },
+            {
+              "type": "assertText",
+              "value": "Order placed successfully",
+              "strategies": [
+                { "kind": "role", "role": "status", "name": "Order message", "confidence": 0.9 },
+                { "kind": "testId", "value": "order-message", "confidence": 0.85 },
+                { "kind": "css", "selector": "[data-testid='order-message']", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//p[contains(., 'Order')]", "confidence": 0.4 }
+              ]
+            },
+            {
+              "type": "assertText",
+              "value": "1",
+              "strategies": [
+                { "kind": "role", "role": "status", "name": "Cart count", "confidence": 0.9 },
+                { "kind": "testId", "value": "cart-count", "confidence": 0.85 },
+                { "kind": "css", "selector": "[data-testid='cart-count']", "confidence": 0.6 },
+                { "kind": "xpath", "selector": "//*[@data-testid='cart-count']", "confidence": 0.4 }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

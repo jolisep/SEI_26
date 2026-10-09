@@ -1,0 +1,12 @@
+{
+  "version": "vanilla",
+  "mutation": "base",
+  "run": 1,
+  "passed": true,
+  "passedTests": 1,
+  "totalTests": 1,
+  "totalActions": 10,
+  "fallbackCount": 0,
+  "executionTimeMs": 1210,
+  "fallbackRate": 0
+}

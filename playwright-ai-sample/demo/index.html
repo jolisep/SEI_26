@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Adaptive Shop Checkout</title>
+</head>
+<body>
+  <main>
+    <h1>Adaptive Shop</h1>
+    <nav aria-label="Main navigation">
+      <a href="/products" data-testid="catalog-link">Products</a>
+    </nav>
+
+    <section aria-label="Product catalog" data-testid="catalog">
+      <h2>Catalog</h2>
+      <label for="product-search">Search products</label>
+      <input id="product-search" data-testid="product-search" type="search" placeholder="Search products">
+      <article data-testid="product-card">
+        <h3>Notebook</h3>
+        <p>Portable notebook for everyday work.</p>
+        <button data-testid="add-to-cart" data-action="add-cart">Add to cart</button>
+      </article>
+    </section>
+
+    <section aria-label="Shopping cart" data-testid="cart-section">
+      <h2>Cart</h2>
+      <p aria-label="Cart count" role="status" data-testid="cart-count">0</p>
+      <label for="quantity">Quantity</label>
+      <input id="quantity" data-testid="quantity" type="number" value="1" min="1">
+      <label for="coupon">Coupon code</label>
+      <input id="coupon" data-testid="coupon" type="text">
+      <button data-testid="apply-coupon" type="button">Apply coupon</button>
+      <p data-testid="coupon-message" role="status" aria-label="Coupon message">No coupon applied</p>
+    </section>
+
+    <section aria-label="Customer details" data-testid="customer-form">
+      <h2>Customer details</h2>
+      <label for="customer-name">Name</label>
+      <input id="customer-name" data-testid="customer-name" name="customerName" type="text">
+      <label for="customer-email">Email</label>
+      <input id="customer-email" data-testid="customer-email" name="customerEmail" type="email">
+      <label for="address">Address</label>
+      <textarea id="address" data-testid="address" name="address"></textarea>
+      <button data-testid="place-order" type="button">Place order</button>
+      <p data-testid="order-message" role="status" aria-label="Order message">Order not submitted</p>
+    </section>
+  </main>
+  <script>
+    const byTestId = (id) => document.querySelector(`[data-testid="${id}"]`);
+    const cartCount = byTestId('cart-count');
+    document.querySelector('[data-action="add-cart"]').addEventListener('click', () => {
+      cartCount.textContent = String(Number(cartCount.textContent) + 1);
+    });
+    byTestId('apply-coupon').addEventListener('click', () => {
+      document.querySelector('[data-testid="coupon-message"], [data-testid="discount-message"]').textContent = byTestId('coupon').value === 'SAVE10'
+        ? 'Coupon applied'
+        : 'Invalid coupon';
+    });
+    byTestId('place-order').addEventListener('click', () => {
+      byTestId('order-message').textContent = 'Order placed successfully';
+    });
+  </script>
+</body>
+</html>

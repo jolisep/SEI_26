@@ -1,0 +1,75 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: vanilla-checkout.spec.ts >> customer can complete a checkout with vanilla locators
+- Location: tests\vanilla-checkout.spec.ts:4:5
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected) failed
+
+Locator:  getByRole('status', { name: 'Coupon message' })
+Expected: "Coupon applied"
+Received: "No coupon applied"
+Timeout:  5000ms
+
+Call log:
+  - Expect "toHaveText" getByRole('status', { name: 'Coupon message' }) with timeout 5000ms
+  - waiting for getByRole('status', { name: 'Coupon message' })
+    14 × locator resolved to <p role="status" aria-label="Coupon message" data-testid="discount-message">No coupon applied</p>
+       - unexpected value "No coupon applied"
+
+```
+
+```yaml
+- status "Coupon message": No coupon applied
+```
+
+# Test source
+
+```ts
+  1  | import { expect, test } from '@playwright/test';
+  2  | import { writeEvaluationResult } from './shared/evaluation-metrics';
+  3  | 
+  4  | test('customer can complete a checkout with vanilla locators', async ({ page }, testInfo) => {
+  5  |   const startedAt = Date.now();
+  6  |   const mutation = process.env.MUTATION ?? 'base';
+  7  |   let passed = false;
+  8  | 
+  9  |   try {
+  10 |     await page.goto(`/?mutation=${mutation}`);
+  11 |     await page.getByRole('searchbox', { name: 'Search products' }).fill('Notebook');
+  12 |     await page.getByRole('button', { name: 'Add to cart' }).click();
+  13 |     await page.getByRole('textbox', { name: 'Name' }).fill('Ada Lovelace');
+  14 |     await page.getByRole('textbox', { name: 'Email' }).fill('ada@example.com');
+  15 |     await page.getByRole('textbox', { name: 'Address' }).fill('1 Example Street');
+  16 |     await page.getByRole('textbox', { name: 'Coupon code' }).fill('SAVE10');
+  17 |     await page.getByRole('button', { name: 'Apply coupon' }).click();
+> 18 |     await expect(page.getByRole('status', { name: 'Coupon message' })).toHaveText('Coupon applied');
+     |                                                                        ^ Error: expect(locator).toHaveText(expected) failed
+  19 |     await page.getByRole('button', { name: 'Place order' }).click();
+  20 |     await expect(page.getByRole('status', { name: 'Order message' })).toHaveText('Order placed successfully');
+  21 |     await expect(page.getByRole('status', { name: 'Cart count' })).toHaveText('1');
+  22 |     passed = true;
+  23 |   } finally {
+  24 |     await writeEvaluationResult(process.env.EVALUATION_OUTPUT_PATH ?? testInfo.outputPath('metrics.json'), {
+  25 |       version: 'vanilla',
+  26 |       mutation,
+  27 |       run: Number(process.env.EVALUATION_RUN ?? 1),
+  28 |       passed,
+  29 |       passedTests: passed ? 1 : 0,
+  30 |       totalTests: 1,
+  31 |       totalActions: 10,
+  32 |       fallbackCount: 0,
+  33 |       executionTimeMs: Date.now() - startedAt
+  34 |     });
+  35 |   }
+  36 | });
+  37 | 
+```

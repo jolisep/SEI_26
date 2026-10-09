@@ -1,0 +1,18 @@
+{
+  "version": "adaptive",
+  "mutation": "M08",
+  "run": 1,
+  "passed": true,
+  "passedTests": 1,
+  "totalTests": 1,
+  "totalActions": 11,
+  "fallbackCount": 0,
+  "executionTimeMs": 310,
+  "strategyUsage": {
+    "role": {
+      "successes": 11,
+      "attempts": 11
+    }
+  },
+  "fallbackRate": 0
+}

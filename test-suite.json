@@ -1,0 +1,91 @@
+{
+  "suiteName": "AI-adaptive checkout smoke tests",
+  "baseUrl": "https://shop.example.test",
+  "tests": [
+    {
+      "testName": "customer can add a product to the cart",
+      "steps": [
+        {
+          "stepName": "open the catalog",
+          "actions": [
+            {
+              "type": "click",
+              "value": null,
+              "strategies": [
+                {
+                  "kind": "role",
+                  "role": "link",
+                  "name": "Products",
+                  "confidence": 0.98
+                },
+                {
+                  "kind": "css",
+                  "selector": "a[href='/products']",
+                  "confidence": 0.82
+                },
+                {
+                  "kind": "xpath",
+                  "selector": "//a[contains(normalize-space(), 'Products')]",
+                  "confidence": 0.61
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stepName": "add the first product",
+          "actions": [
+            {
+              "type": "click",
+              "value": null,
+              "strategies": [
+                {
+                  "kind": "testId",
+                  "value": "add-to-cart",
+                  "confidence": 0.95
+                },
+                {
+                  "kind": "css",
+                  "selector": "button[data-action='add-cart']",
+                  "confidence": 0.79
+                },
+                {
+                  "kind": "xpath",
+                  "selector": "//button[contains(., 'Add to cart')]",
+                  "confidence": 0.58
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "stepName": "verify the cart count",
+          "actions": [
+            {
+              "type": "assertText",
+              "value": "1",
+              "strategies": [
+                {
+                  "kind": "role",
+                  "role": "status",
+                  "name": "Cart count",
+                  "confidence": 0.91
+                },
+                {
+                  "kind": "css",
+                  "selector": "[data-testid='cart-count']",
+                  "confidence": 0.84
+                },
+                {
+                  "kind": "xpath",
+                  "selector": "//*[@aria-label='Cart count']",
+                  "confidence": 0.63
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
