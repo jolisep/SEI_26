@@ -1,13 +1,13 @@
 [
-  { "id": "base", "description": "Unchanged checkout UI" },
-  { "id": "M01", "description": "Renamed add-to-cart button" },
-  { "id": "M02", "description": "Changed add-to-cart test id" },
-  { "id": "M03", "description": "Changed coupon message test id" },
-  { "id": "M04", "description": "Wrapped the customer form" },
-  { "id": "M05", "description": "Wrapped the product card" },
-  { "id": "M06", "description": "Wrapped the order message" },
-  { "id": "M07", "description": "Added a CSS class to the order button" },
-  { "id": "M08", "description": "Added a CSS class to the search control" },
-  { "id": "M09", "description": "Changed the cart accessible label" },
-  { "id": "M10", "description": "Reordered customer labels in the markup" }
+  { "id": "base", "description": "Unchanged checkout UI", "category": "baseline" },
+  { "id": "M01", "description": "Renamed add-to-cart button", "category": "semantic" },
+  { "id": "M02", "description": "Changed add-to-cart test id", "category": "cosmetic" },
+  { "id": "M03", "description": "Changed coupon message test id", "category": "cosmetic" },
+  { "id": "M04", "description": "Wrapped the customer form", "category": "cosmetic" },
+  { "id": "M05", "description": "Wrapped the product card", "category": "cosmetic" },
+  { "id": "M06", "description": "Wrapped the order message", "category": "cosmetic" },
+  { "id": "M07", "description": "Added a CSS class to the order button", "category": "cosmetic" },
+  { "id": "M08", "description": "Added a CSS class to the search control", "category": "cosmetic" },
+  { "id": "M09", "description": "Changed the cart accessible label", "category": "semantic" },
+  { "id": "M10", "description": "Reordered customer labels in the markup", "category": "cosmetic" }
 ]

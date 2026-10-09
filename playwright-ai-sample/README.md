@@ -76,5 +76,64 @@ npm run evaluation:charts
 
 Raw execution metrics are written to `evaluation/results/runs`, summaries to
 `evaluation/results/summary.json`, and SVG charts to `evaluation/charts`.
+
+To repeat the complete experiment 10 times, clean old run files and set the
+number of repetitions in PowerShell:
+
+```powershell
+$env:EXPERIMENT_REPETITIONS = '10'
+$env:EVALUATION_CLEAN = 'true'
+npm run evaluation:run
+Remove-Item Env:\EXPERIMENT_REPETITIONS
+Remove-Item Env:\EVALUATION_CLEAN
+npm run evaluation:aggregate
+npm run evaluation:charts
+```
+
+Each result is saved with its repetition number (for example,
+`adaptive-M03-R07.json`), so the 10 repetitions produce 200 mutation-result
+files without overwriting one another. Any separately retained baseline files
+remain available. `EVALUATION_CLEAN=true` only removes result files generated
+by the experiment before starting.
+
+## Experimental protocol
+
+The controlled evaluation has three executable modes:
+
+```powershell
+$env:EXPERIMENT_REPETITIONS = '10'
+$env:EVALUATION_CLEAN = 'true'
+npm run evaluation:e1       # vanilla vs adaptive, M01-M10, confidence reset
+npm run evaluation:e2       # fixed vs learning, persistent M02
+npm run evaluation:e3       # learning over 10 persistent M02 runs
+Remove-Item Env:\EXPERIMENT_REPETITIONS
+Remove-Item Env:\EVALUATION_CLEAN
+npm run evaluation:aggregate
+npm run evaluation:charts
+```
+
+E1 resets the confidence store before each adaptive mutation. E2 runs the
+adaptive suite with learning disabled and enabled, both on M02. E3 keeps the
+learning-enabled store between runs so `s`, `n`, and confidence evolve.
+The update is `s' = (1 - alpha) * s + alpha * observation`, with
+`alpha = 0.2` by default; priors are the confidence values in
+`tests/data/test-suite.json` (`role=0.9`, `testId=0.85`, `css=0.6`,
+`xpath=0.4`).
+
+The aggregator writes `evaluation/results/raw.csv` (one row per action and
+run), `evaluation/results/summary.csv` (aggregates by mutation, version, and
+variant), and `summary.json`. The raw rows include the selected and final
+strategy, attempts, confidence `s`/`n` before and after, action duration, and
+pass/fail. The charts are monochrome SVGs without an image title:
+`success-rate.svg`, `strategy-usage.svg`, and the optional
+`confidence-evolution.svg`.
+
+The mutation categories are fixed in `evaluation/mutations.json` before the
+experiment: M01 and M09 are semantic; M02-M08 and M10 are cosmetic. The
+vanilla baseline uses only Playwright role locators and no project adapters.
+The checkout contains 11 actions: two product actions, three customer-detail
+actions, and six coupon/order actions. E4 is covered by
+`tests/confidence-store.spec.ts`, which checks the formula with hand-calculated
+values.
 Manual repair times should be recorded separately because they cannot be
 measured reliably by the browser runner.

@@ -9,6 +9,9 @@
     "test:ui": "playwright test --ui",
     "demo": "node demo/server.mjs",
     "evaluation:run": "node evaluation/run-experiment.mjs",
+    "evaluation:e1": "node evaluation/run-experiment.mjs E1",
+    "evaluation:e2": "node evaluation/run-experiment.mjs E2",
+    "evaluation:e3": "node evaluation/run-experiment.mjs E3",
     "evaluation:aggregate": "node evaluation/aggregate-results.mjs",
     "evaluation:charts": "node evaluation/generate-charts.mjs"
   },

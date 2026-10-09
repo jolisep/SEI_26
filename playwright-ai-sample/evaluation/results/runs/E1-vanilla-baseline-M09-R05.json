@@ -1,0 +1,115 @@
+{
+  "version": "vanilla",
+  "variant": "baseline",
+  "experiment": "E1",
+  "mutation": "M09",
+  "run": 5,
+  "passed": false,
+  "passedTests": 0,
+  "totalTests": 1,
+  "totalActions": 11,
+  "fallbackCount": 0,
+  "executionTimeMs": 5271,
+  "actions": [
+    {
+      "action": "find and add a product:01",
+      "actionType": "fill",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 60,
+      "passed": true
+    },
+    {
+      "action": "find and add a product:02",
+      "actionType": "click",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 47,
+      "passed": true
+    },
+    {
+      "action": "enter customer details:01",
+      "actionType": "fill",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 8,
+      "passed": true
+    },
+    {
+      "action": "enter customer details:02",
+      "actionType": "fill",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 7,
+      "passed": true
+    },
+    {
+      "action": "enter customer details:03",
+      "actionType": "fill",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 8,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:01",
+      "actionType": "fill",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 7,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:02",
+      "actionType": "click",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 32,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:03",
+      "actionType": "assertText",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 11,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:04",
+      "actionType": "click",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 39,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:05",
+      "actionType": "assertText",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 3,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:06",
+      "actionType": "assertText",
+      "initialStrategy": "role",
+      "finalStrategy": "failed",
+      "attempts": 1,
+      "executionTimeMs": 5017,
+      "passed": false
+    }
+  ],
+  "fallbackRate": 0
+}

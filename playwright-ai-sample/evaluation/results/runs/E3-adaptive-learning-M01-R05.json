@@ -1,0 +1,169 @@
+{
+  "version": "adaptive",
+  "variant": "learning",
+  "experiment": "E3",
+  "mutation": "M01",
+  "run": 5,
+  "passed": true,
+  "passedTests": 1,
+  "totalTests": 1,
+  "totalActions": 11,
+  "fallbackCount": 0,
+  "executionTimeMs": 327,
+  "strategyUsage": {
+    "role": {
+      "successes": 8,
+      "attempts": 8
+    },
+    "testId": {
+      "successes": 3,
+      "attempts": 3
+    }
+  },
+  "actions": [
+    {
+      "action": "find and add a product:0",
+      "actionType": "fill",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "confidenceBefore": 0.9931280523264001,
+      "confidenceAfter": 0.9945024418611201,
+      "s": 0.9945024418611201,
+      "n": 14,
+      "executionTimeMs": 69,
+      "passed": true
+    },
+    {
+      "action": "find and add a product:1",
+      "actionType": "click",
+      "initialStrategy": "testId",
+      "finalStrategy": "testId",
+      "attempts": 1,
+      "confidenceBefore": 0.9896920784896002,
+      "confidenceAfter": 0.9917536627916801,
+      "s": 0.9917536627916801,
+      "n": 14,
+      "executionTimeMs": 50,
+      "passed": true
+    },
+    {
+      "action": "enter customer details:0",
+      "actionType": "fill",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "confidenceBefore": 0.9945024418611201,
+      "confidenceAfter": 0.9956019534888962,
+      "s": 0.9956019534888962,
+      "n": 15,
+      "executionTimeMs": 15,
+      "passed": true
+    },
+    {
+      "action": "enter customer details:1",
+      "actionType": "fill",
+      "initialStrategy": "testId",
+      "finalStrategy": "testId",
+      "attempts": 1,
+      "confidenceBefore": 0.9917536627916801,
+      "confidenceAfter": 0.993402930233344,
+      "s": 0.993402930233344,
+      "n": 15,
+      "executionTimeMs": 15,
+      "passed": true
+    },
+    {
+      "action": "enter customer details:2",
+      "actionType": "fill",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "confidenceBefore": 0.9832227840000001,
+      "confidenceAfter": 0.9865782272000001,
+      "s": 0.9865782272000001,
+      "n": 10,
+      "executionTimeMs": 16,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:0",
+      "actionType": "fill",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "confidenceBefore": 0.9956019534888962,
+      "confidenceAfter": 0.996481562791117,
+      "s": 0.996481562791117,
+      "n": 16,
+      "executionTimeMs": 14,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:1",
+      "actionType": "click",
+      "initialStrategy": "testId",
+      "finalStrategy": "testId",
+      "attempts": 1,
+      "confidenceBefore": 0.993402930233344,
+      "confidenceAfter": 0.9947223441866753,
+      "s": 0.9947223441866753,
+      "n": 16,
+      "executionTimeMs": 52,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:2",
+      "actionType": "assertText",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "confidenceBefore": 0.9865782272000001,
+      "confidenceAfter": 0.98926258176,
+      "s": 0.98926258176,
+      "n": 11,
+      "executionTimeMs": 14,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:3",
+      "actionType": "click",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "confidenceBefore": 0.9590400000000001,
+      "confidenceAfter": 0.9672320000000001,
+      "s": 0.9672320000000001,
+      "n": 6,
+      "executionTimeMs": 36,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:4",
+      "actionType": "assertText",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "confidenceBefore": 0.9590400000000001,
+      "confidenceAfter": 0.9672320000000001,
+      "s": 0.9672320000000001,
+      "n": 6,
+      "executionTimeMs": 10,
+      "passed": true
+    },
+    {
+      "action": "apply a coupon and place the order:5",
+      "actionType": "assertText",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "confidenceBefore": 0.9590400000000001,
+      "confidenceAfter": 0.9672320000000001,
+      "s": 0.9672320000000001,
+      "n": 6,
+      "executionTimeMs": 11,
+      "passed": true
+    }
+  ],
+  "fallbackRate": 0
+}

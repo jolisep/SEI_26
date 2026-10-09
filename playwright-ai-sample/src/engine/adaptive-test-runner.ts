@@ -4,12 +4,14 @@ import { RecoveryManager } from '../recovery/recovery-manager';
 import type { ActionExecutionContext } from '../adapters/playwright-action-adapter';
 import { ActionAdapterFactory } from '../factories/action-adapter-factory';
 import type { TestCase } from '../models/test-suite';
+import type { ConfidenceStore } from '../learning/confidence-store';
 
 export class AdaptiveTestRunner {
   constructor(
     private readonly logger = new StructuredEventLogger(),
     private readonly recovery = new RecoveryManager(logger),
-    private readonly factory = new ActionAdapterFactory(logger)
+    private readonly factory = new ActionAdapterFactory(logger),
+    private readonly evaluation: { confidenceStore?: ConfidenceStore; mutation?: string } = {}
   ) {}
 
   async run(page: Page, testCase: TestCase): Promise<void> {
@@ -22,7 +24,8 @@ export class AdaptiveTestRunner {
           testName: testCase.testName,
           stepName: step.stepName,
           actionType: action.type,
-          actionIndex
+          actionIndex,
+          evaluation: this.evaluation
         };
         const startedAt = Date.now();
         await this.recovery.execute(page, context, async (attempt) => {

@@ -29,6 +29,11 @@ export default defineConfig({
       testMatch: '**/adaptive-checkout.spec.ts',
       outputDir: 'evaluation/results/raw/adaptive',
       use: { ...devices['Desktop Chrome'] }
+    },
+    {
+      name: 'unit',
+      testMatch: '**/confidence-store.spec.ts',
+      outputDir: 'test-results/unit'
     }
   ]
 });

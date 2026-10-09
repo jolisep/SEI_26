@@ -1,0 +1,34 @@
+{
+  "version": "vanilla",
+  "variant": "baseline",
+  "experiment": "E1",
+  "mutation": "M01",
+  "run": 7,
+  "passed": false,
+  "passedTests": 0,
+  "totalTests": 1,
+  "totalActions": 11,
+  "fallbackCount": 0,
+  "executionTimeMs": 30035,
+  "actions": [
+    {
+      "action": "find and add a product:01",
+      "actionType": "fill",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
+      "attempts": 1,
+      "executionTimeMs": 45,
+      "passed": true
+    },
+    {
+      "action": "find and add a product:02",
+      "actionType": "click",
+      "initialStrategy": "role",
+      "finalStrategy": "failed",
+      "attempts": 1,
+      "executionTimeMs": 29968,
+      "passed": false
+    }
+  ],
+  "fallbackRate": 0
+}
