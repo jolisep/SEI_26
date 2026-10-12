@@ -9,5 +9,7 @@
   { "id": "M07", "description": "Added a CSS class to the order button", "category": "cosmetic" },
   { "id": "M08", "description": "Added a CSS class to the search control", "category": "cosmetic" },
   { "id": "M09", "description": "Changed the cart accessible label", "category": "semantic" },
-  { "id": "M10", "description": "Reordered customer labels in the markup", "category": "cosmetic" }
+  { "id": "M10", "description": "Reordered customer labels in the markup", "category": "cosmetic" },
+  { "id": "M11", "description": "Added two items to the cart instead of one", "category": "semantic" },
+  { "id": "M12", "description": "Stopped the order submission from completing", "category": "semantic" }
 ]

@@ -17,7 +17,9 @@ function applyMutation(html, mutation) {
     M07: ['data-testid="place-order" type="button"', 'class="primary-action" data-testid="place-order" type="button"'],
     M08: ['data-testid="product-search"', 'class="search-control" data-testid="product-search"'],
     M09: ['aria-label="Cart count" role="status"', 'aria-label="Basket total" role="status"'],
-    M10: ['<label for="customer-name">Name</label>\n      <input id="customer-name"', '<label for="customer-email">Email</label>\n      <input id="customer-email"']
+    M10: ['<label for="customer-name">Name</label>\n      <input id="customer-name"', '<label for="customer-email">Email</label>\n      <input id="customer-email"'],
+    M11: ["String(Number(cartCount.textContent) + 1)", "String(Number(cartCount.textContent) + 2)"],
+    M12: ["'Order placed successfully'", "'Order submission failed'"]
   };
   const change = mutations[mutation];
   return change ? html.replace(change[0], change[1]) : html;

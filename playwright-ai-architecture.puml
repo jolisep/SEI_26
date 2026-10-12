@@ -22,7 +22,7 @@ title AI-Driven Playwright Test Architecture
 caption JSON-defined tests adapt to UI changes through ranked locator strategies
 
 actor "CI/CD Pipeline" as cicd
-actor "LLM / UI Change Analyzer" as llm
+actor "LLM / UI Change Analyzer\n(offline, not evaluated)" as llm
 
 database "test-suite.json\n(testName, steps, actions, strategies[])" as json
 
@@ -37,6 +37,7 @@ package "Execution Orchestration" {
   component "AdaptiveTestRunner\n(run(page, testCase))" as runner
   component "ActionAdapterFactory" as factory
   component "StrategySelector\n(rank + confidence + fallback)" as selector
+  database "ConfidenceStore\n(persisted s, n per mutation/action/strategy)" as confidence
 }
 
 package "Adapter Layer" {
@@ -71,14 +72,16 @@ component "Application Under Test\n(Web UI)" as app
 database "Execution Report\n(attempts, selected strategy, evidence)" as report
 
 cicd --> playwrightRunner : starts suite
-llm --> json : updates selectors\nafter UI analysis
+llm ..> json : offline selector suggestions\nafter UI analysis\n(not evaluated)
 json --> reader : readSync()
 reader --> model : parses and validates
 model --> registrar : exposes tests[]
 registrar --> playwrightRunner : registers one test\nper testCase
 playwrightRunner --> runner : invokes each testCase
+runner --> confidence : loads confidence\nbefore each run
 runner --> factory : creates adapter\nfor each action
 factory --> selector : resolves ranked strategies
+selector --> confidence : reads scores before ranking\nupdates s/n after outcome
 factory ..> adapter : returns
 selector --> adapter : tries strategies\nuntil success
 clickAdapter ..|> adapter
@@ -111,14 +114,22 @@ logger --> correlation : enriches event context
 correlation --> logSink : writes structured message
 
 note right of selector
-  Example ranking:
-  1. getByRole / accessible name
-  2. data-testid or CSS
-  3. XPath
+  Runtime ranking:
+  strategies are ordered by the
+  persisted confidence score.
 
-  The selector is selected at runtime.
+  Initial priors come from the JSON.
   A failed strategy falls back to the next
-  strategy in the action JSON.
+  ranked strategy. Successful and failed
+  outcomes update the ConfidenceStore.
+end note
+
+note right of confidence
+  Read before each run.
+  Updated after each strategy outcome
+  using the configured learning rule.
+  The store is persisted between runs
+  when the experiment enables learning.
 end note
 
 note right of registrar
@@ -149,6 +160,12 @@ note bottom of adapter
   Factory Pattern: maps action.type to the correct adapter.
   JSON: externalizes test names and behavior so an LLM can update
   selectors or add cases without changing the test file.
+end note
+
+note bottom of llm
+  The sample does not call or evaluate an LLM.
+  This connection documents a possible offline
+  source of selector updates only.
 end note
 
 @enduml

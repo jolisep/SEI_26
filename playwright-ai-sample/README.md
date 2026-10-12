@@ -62,7 +62,7 @@ The project includes a shared checkout flow executed by two Playwright projects:
 - `adaptive`: the existing JSON-driven adapter and fallback runner.
 
 The demo server applies reproducible UI mutations selected with `?mutation=M01`
-through `M10`. The mutation catalogue is in `evaluation/mutations.json`.
+through `M12`. The mutation catalogue is in `evaluation/mutations.json`.
 
 Run one version or the complete experiment:
 
@@ -103,7 +103,7 @@ The controlled evaluation has three executable modes:
 ```powershell
 $env:EXPERIMENT_REPETITIONS = '10'
 $env:EVALUATION_CLEAN = 'true'
-npm run evaluation:e1       # vanilla vs adaptive, M01-M10, confidence reset
+npm run evaluation:e1       # vanilla vs adaptive, M01-M12, confidence reset
 npm run evaluation:e2       # fixed vs learning, persistent M02
 npm run evaluation:e3       # learning over 10 persistent M02 runs
 Remove-Item Env:\EXPERIMENT_REPETITIONS
@@ -124,12 +124,20 @@ The aggregator writes `evaluation/results/raw.csv` (one row per action and
 run), `evaluation/results/summary.csv` (aggregates by mutation, version, and
 variant), and `summary.json`. The raw rows include the selected and final
 strategy, attempts, confidence `s`/`n` before and after, action duration, and
-pass/fail. The charts are monochrome SVGs without an image title:
+pass/fail. The summary separates distinct affected locator actions from failed
+runs and manual recovery changes. For adaptive runs it also reports actions
+resolved by a non-primary strategy and their rate; this is different from the
+fallback rate because a learned non-primary strategy can be selected directly.
+Paired timing fields include only runs where both vanilla and adaptive pass.
+The charts are monochrome SVGs without an image title:
 `success-rate.svg`, `strategy-usage.svg`, and the optional
 `confidence-evolution.svg`.
 
 The mutation categories are fixed in `evaluation/mutations.json` before the
-experiment: M01 and M09 are semantic; M02-M08 and M10 are cosmetic. The
+experiment: M01, M09, M11, and M12 are semantic; M02-M08 and M10 are cosmetic.
+M11 changes the cart count from one to two, while M12 prevents the order
+success message from being produced; both should be caught by the existing
+assertions in vanilla and adaptive runs. The
 vanilla baseline uses only Playwright role locators and no project adapters.
 The checkout contains 11 actions: two product actions, three customer-detail
 actions, and six coupon/order actions. E4 is covered by

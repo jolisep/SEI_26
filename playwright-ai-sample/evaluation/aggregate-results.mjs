@@ -8,6 +8,7 @@ const files = (await readdir(directory)).filter((file) => file.endsWith('.json')
 const results = await Promise.all(files.map(async (file) => JSON.parse(await readFile(resolve(directory, file), 'utf8'))));
 const mutations = JSON.parse(await readFile(resolve(root, 'evaluation/mutations.json'), 'utf8'));
 const categories = new Map(mutations.map((mutation) => [mutation.id, mutation.category ?? 'unknown']));
+const primaryStrategy = 'role';
 const actionRows = results.flatMap((result) => (result.actions ?? []).map((action) => ({
   experiment: result.experiment ?? '',
   version: result.version,
@@ -38,9 +39,24 @@ for (const result of results) {
 const summary = [...groups.entries()].map(([key, group]) => {
   const [experiment, version, variant, mutation] = key.split('|');
   const times = group.map((item) => item.executionTimeMs);
-  const fallbackCount = version === 'vanilla'
-    ? group.reduce((sum, item) => sum + (item.actions ?? []).filter((action) => !action.passed).length, 0)
-    : group.reduce((sum, item) => sum + item.fallbackCount, 0);
+  const brokenActions = group.flatMap((item) => (item.actions ?? [])
+    .filter((action) => version === 'vanilla'
+      ? !action.passed
+      : action.finalStrategy !== action.initialStrategy)
+    .map((action) => action.action));
+  const nonPrimaryActions = group.flatMap((item) => (item.actions ?? [])
+    .filter((action) => version === 'adaptive' && action.finalStrategy !== primaryStrategy)
+    .map((action) => action.action));
+  const counterpartVersion = version === 'vanilla' ? 'adaptive' : 'vanilla';
+  const pairedGroup = results.filter((item) =>
+    item.experiment === experiment &&
+    item.version === counterpartVersion &&
+    item.mutation === mutation &&
+    group.some((current) => current.run === item.run)
+  );
+  const pairedRuns = group
+    .filter((item) => item.passed && pairedGroup.some((counterpart) => counterpart.run === item.run && counterpart.passed));
+  const pairedTimes = pairedRuns.map((item) => item.executionTimeMs);
   return {
     experiment,
     version,
@@ -50,13 +66,23 @@ const summary = [...groups.entries()].map(([key, group]) => {
     executions: group.length,
     passedTests: group.filter((item) => item.passed).length,
     successRate: average(group.map((item) => item.passed ? 1 : 0)),
-    totalLocatorsBroken: fallbackCount,
-    recoveryChanges: fallbackCount,
+    distinctLocatorsBroken: new Set(brokenActions).size,
+    failedRuns: group.filter((item) => !item.passed).length,
+    recoveryChanges: version === 'vanilla' ? new Set(brokenActions).size : 0,
     fallbackRate: version === 'adaptive'
       ? average(group.map((item) => item.fallbackRate))
       : '',
+    nonPrimaryResolvedActions: version === 'adaptive' ? nonPrimaryActions.length : 0,
+    nonPrimaryResolutionRate: version === 'adaptive'
+      ? (group.reduce((sum, item) => sum + item.totalActions, 0) === 0
+          ? 0
+          : nonPrimaryActions.length / group.reduce((sum, item) => sum + item.totalActions, 0))
+      : '',
     averageExecutionTimeMs: average(times),
     executionTimeStdDevMs: standardDeviation(times),
+    pairedRuns: pairedTimes.length,
+    pairedAverageExecutionTimeMs: pairedTimes.length > 0 ? average(pairedTimes) : '',
+    pairedExecutionTimeStdDevMs: pairedTimes.length > 0 ? standardDeviation(pairedTimes) : '',
     averageFallbackCount: average(group.map((item) => item.fallbackCount)),
     failedAttemptsPerRun: average(group.map((item) => Math.max(0, item.fallbackCount))),
     strategyUsage: mergeStrategyUsage(group)
