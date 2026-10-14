@@ -105,6 +105,12 @@ Remove-Item Env:\EXPERIMENT_REPETITIONS
 Remove-Item Env:\EVALUATION_CLEAN
 ```
 
+Cada experiência remove automaticamente os ficheiros `confidence-store-*` no
+início, antes do primeiro run. Isto garante que o run 1 começa com os priors
+definidos no `test-suite.json`, mesmo que exista um store de uma execução
+anterior. `EVALUATION_CLEAN=true` continua a ser necessário apenas quando se
+pretende também apagar os resultados individuais anteriores.
+
 Modos disponíveis:
 
 ```powershell
@@ -163,6 +169,17 @@ Os SVGs são escritos em
 - `success-rate.svg`;
 - `strategy-usage.svg`;
 - `confidence-evolution.svg`.
+
+No gráfico `strategy-usage.svg`, cada estratégia é separada em:
+
+- `direct`: a estratégia final foi seleccionada na primeira tentativa;
+- `fallback`: a estratégia final foi seleccionada depois de pelo menos uma
+  estratégia anterior ter falhado.
+
+As cores identificam o tipo de locator. A tonalidade identifica o caminho:
+as barras escuras/sólidas são selecções directas e as barras
+claras/semitransparentes são fallbacks. O valor numérico de cada contagem é
+apresentado por cima da barra.
 
 O gráfico de confiança usa actualmente os resultados da E3 para M01 e agrega
 `confidenceAfter` por run e por estratégia final. Não representa uma única

@@ -9,7 +9,7 @@
   "totalTests": 1,
   "totalActions": 11,
   "fallbackCount": 0,
-  "executionTimeMs": 242,
+  "executionTimeMs": 230,
   "actions": [
     {
       "action": "find and add a product:01",
@@ -17,7 +17,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 46,
+      "executionTimeMs": 43,
       "passed": true
     },
     {
@@ -26,7 +26,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 54,
+      "executionTimeMs": 47,
       "passed": true
     },
     {
@@ -62,7 +62,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 11,
+      "executionTimeMs": 6,
       "passed": true
     },
     {
@@ -71,7 +71,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 28,
+      "executionTimeMs": 34,
       "passed": true
     },
     {
@@ -98,7 +98,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 4,
+      "executionTimeMs": 3,
       "passed": true
     },
     {

@@ -3,6 +3,8 @@ export type LogLevel = 'info' | 'warn' | 'error';
 export interface LogContext {
   testName: string;
   stepName?: string;
+  stepIndex?: number;
+  actionIndex?: number;
   actionType?: string;
   attempt?: number;
   strategyKind?: string;

@@ -23,6 +23,7 @@ export class AdaptiveTestRunner {
         const context: ActionExecutionContext = {
           testName: testCase.testName,
           stepName: step.stepName,
+          stepIndex,
           actionType: action.type,
           actionIndex,
           evaluation: this.evaluation

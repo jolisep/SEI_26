@@ -9,7 +9,7 @@
   "totalTests": 1,
   "totalActions": 11,
   "fallbackCount": 0,
-  "executionTimeMs": 400,
+  "executionTimeMs": 274,
   "strategyUsage": {
     "role": {
       "successes": 11,
@@ -23,11 +23,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9865782272000001,
-      "confidenceAfter": 0.98926258176,
-      "s": 0.98926258176,
-      "n": 11,
-      "executionTimeMs": 50,
+      "confidenceBefore": 0.9488000000000001,
+      "confidenceAfter": 0.9590400000000001,
+      "s": 0.9590400000000001,
+      "n": 5,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 60,
       "passed": true
     },
     {
@@ -36,11 +42,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9865782272000001,
-      "confidenceAfter": 0.98926258176,
-      "s": 0.98926258176,
-      "n": 11,
-      "executionTimeMs": 168,
+      "confidenceBefore": 0.9488000000000001,
+      "confidenceAfter": 0.9590400000000001,
+      "s": 0.9590400000000001,
+      "n": 5,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 42,
       "passed": true
     },
     {
@@ -49,11 +61,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.98926258176,
-      "confidenceAfter": 0.991410065408,
-      "s": 0.991410065408,
-      "n": 12,
-      "executionTimeMs": 13,
+      "confidenceBefore": 0.9488000000000001,
+      "confidenceAfter": 0.9590400000000001,
+      "s": 0.9590400000000001,
+      "n": 5,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 12,
       "passed": true
     },
     {
@@ -62,11 +80,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.98926258176,
-      "confidenceAfter": 0.991410065408,
-      "s": 0.991410065408,
-      "n": 12,
-      "executionTimeMs": 15,
+      "confidenceBefore": 0.9488000000000001,
+      "confidenceAfter": 0.9590400000000001,
+      "s": 0.9590400000000001,
+      "n": 5,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 12,
       "passed": true
     },
     {
@@ -75,11 +99,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9737856,
-      "confidenceAfter": 0.97902848,
-      "s": 0.97902848,
-      "n": 8,
-      "executionTimeMs": 12,
+      "confidenceBefore": 0.9488000000000001,
+      "confidenceAfter": 0.9590400000000001,
+      "s": 0.9590400000000001,
+      "n": 5,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 11,
       "passed": true
     },
     {
@@ -88,10 +118,16 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.991410065408,
-      "confidenceAfter": 0.9931280523264001,
-      "s": 0.9931280523264001,
-      "n": 13,
+      "confidenceBefore": 0.9488000000000001,
+      "confidenceAfter": 0.9590400000000001,
+      "s": 0.9590400000000001,
+      "n": 5,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
       "executionTimeMs": 10,
       "passed": true
     },
@@ -101,11 +137,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.991410065408,
-      "confidenceAfter": 0.9931280523264001,
-      "s": 0.9931280523264001,
-      "n": 13,
-      "executionTimeMs": 46,
+      "confidenceBefore": 0.9488000000000001,
+      "confidenceAfter": 0.9590400000000001,
+      "s": 0.9590400000000001,
+      "n": 5,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 34,
       "passed": true
     },
     {
@@ -114,10 +156,16 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.97902848,
-      "confidenceAfter": 0.9832227840000001,
-      "s": 0.9832227840000001,
-      "n": 9,
+      "confidenceBefore": 0.9488000000000001,
+      "confidenceAfter": 0.9590400000000001,
+      "s": 0.9590400000000001,
+      "n": 5,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
       "executionTimeMs": 12,
       "passed": true
     },
@@ -131,7 +179,13 @@
       "confidenceAfter": 0.9590400000000001,
       "s": 0.9590400000000001,
       "n": 5,
-      "executionTimeMs": 38,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 41,
       "passed": true
     },
     {
@@ -144,7 +198,13 @@
       "confidenceAfter": 0.9590400000000001,
       "s": 0.9590400000000001,
       "n": 5,
-      "executionTimeMs": 7,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 6,
       "passed": true
     },
     {
@@ -157,6 +217,12 @@
       "confidenceAfter": 0.9590400000000001,
       "s": 0.9590400000000001,
       "n": 5,
+      "confidenceByStrategy": {
+        "role": 0.9590400000000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
       "executionTimeMs": 6,
       "passed": true
     }

@@ -16,6 +16,8 @@ const versions = requestedVersions?.length
   : experiment === 'E3' ? ['adaptive'] : experiment === 'E2' ? ['adaptive'] : ['vanilla', 'adaptive'];
 const repetitions = parseRepetitions(process.env.EXPERIMENT_REPETITIONS ?? '10');
 
+await cleanConfidenceStores();
+
 if (process.env.EVALUATION_CLEAN === 'true') {
   await cleanPreviousResults();
 }
@@ -91,6 +93,9 @@ async function cleanPreviousResults() {
       .filter((file) => generatedResult.test(file))
       .map((file) => unlink(resolve(directory, file)))
   );
+}
+
+async function cleanConfidenceStores() {
   const resultFiles = await readdir(resolve(root, 'evaluation/results')).catch(() => []);
   await Promise.all(
     resultFiles

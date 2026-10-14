@@ -9,7 +9,7 @@
   "totalTests": 1,
   "totalActions": 11,
   "fallbackCount": 0,
-  "executionTimeMs": 30035,
+  "executionTimeMs": 29990,
   "actions": [
     {
       "action": "find and add a product:01",
@@ -26,7 +26,7 @@
       "initialStrategy": "role",
       "finalStrategy": "failed",
       "attempts": 1,
-      "executionTimeMs": 29968,
+      "executionTimeMs": 29924,
       "passed": false
     }
   ],

@@ -4,11 +4,32 @@ import { StructuredEventLogger, type LogContext } from '../logging/structured-ev
 import type { ConfidenceStore } from '../learning/confidence-store';
 
 export interface ActionExecutionContext extends LogContext {
+  stepIndex: number;
   actionIndex: number;
   evaluation?: {
     confidenceStore?: ConfidenceStore;
     mutation?: string;
   };
+}
+
+function confidenceKey(
+  context: ActionExecutionContext,
+  strategyKind: string,
+  mutation = context.evaluation?.mutation ?? 'base'
+): string {
+  return `${mutation}:${context.stepIndex}:${context.actionIndex}:${strategyKind}`;
+}
+
+function confidenceSnapshot(
+  strategies: LocatorStrategy[],
+  context: ActionExecutionContext,
+  store: ConfidenceStore,
+  mutation?: string
+): Record<string, number> {
+  return Object.fromEntries(strategies.map((strategy) => [
+    strategy.kind,
+    store.get(confidenceKey(context, strategy.kind, mutation), strategy.confidence)
+  ]));
 }
 
 export interface IPlaywrightActionAdapter {
@@ -40,7 +61,7 @@ export async function resolveWithFallback(
   const ordered = [...strategies].map((strategy) => ({
     strategy,
     confidence: options.confidenceStore
-      ? options.confidenceStore.get(`${options.mutation ?? 'base'}:${context.actionIndex}:${strategy.kind}`, strategy.confidence)
+      ? options.confidenceStore.get(confidenceKey(context, strategy.kind, options.mutation), strategy.confidence)
       : strategy.confidence
   })).sort((left, right) => right.confidence - left.confidence);
   const failures: string[] = [];
@@ -51,7 +72,7 @@ export async function resolveWithFallback(
     try {
       await locator.waitFor({ state: 'visible', timeout: 750 });
       const confidence = options.confidenceStore?.update(
-        `${options.mutation ?? 'base'}:${context.actionIndex}:${strategy.kind}`,
+        confidenceKey(context, strategy.kind, options.mutation),
         strategy.confidence,
         true
       );
@@ -61,12 +82,15 @@ export async function resolveWithFallback(
         confidenceBefore: confidence?.before ?? candidate.confidence,
         confidenceAfter: confidence?.after ?? candidate.confidence,
         s: confidence?.s,
-        n: confidence?.n
+        n: confidence?.n,
+        confidenceByStrategy: options.confidenceStore
+          ? confidenceSnapshot(strategies, context, options.confidenceStore, options.mutation)
+          : undefined
       });
       return locator;
     } catch (error) {
       const confidence = options.confidenceStore?.update(
-        `${options.mutation ?? 'base'}:${context.actionIndex}:${strategy.kind}`,
+        confidenceKey(context, strategy.kind, options.mutation),
         strategy.confidence,
         false
       );

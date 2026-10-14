@@ -9,15 +9,15 @@
   "totalTests": 1,
   "totalActions": 11,
   "fallbackCount": 0,
-  "executionTimeMs": 271,
+  "executionTimeMs": 283,
   "strategyUsage": {
     "role": {
-      "successes": 8,
-      "attempts": 8
+      "successes": 10,
+      "attempts": 10
     },
     "testId": {
-      "successes": 3,
-      "attempts": 3
+      "successes": 1,
+      "attempts": 1
     }
   },
   "actions": [
@@ -27,11 +27,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9990776627963147,
-      "confidenceAfter": 0.9992621302370519,
-      "s": 0.9992621302370519,
-      "n": 23,
-      "executionTimeMs": 53,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 57,
       "passed": true
     },
     {
@@ -40,11 +46,17 @@
       "initialStrategy": "testId",
       "finalStrategy": "testId",
       "attempts": 1,
-      "confidenceBefore": 0.998616494194472,
-      "confidenceAfter": 0.9988931953555775,
-      "s": 0.9988931953555775,
-      "n": 23,
-      "executionTimeMs": 52,
+      "confidenceBefore": 0.9685427200000003,
+      "confidenceAfter": 0.9748341760000003,
+      "s": 0.9748341760000003,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.7200000000000001,
+        "testId": 0.9748341760000003,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 39,
       "passed": true
     },
     {
@@ -53,24 +65,36 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9992621302370519,
-      "confidenceAfter": 0.9994097041896415,
-      "s": 0.9994097041896415,
-      "n": 24,
-      "executionTimeMs": 12,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 13,
       "passed": true
     },
     {
       "action": "enter customer details:1",
       "actionType": "fill",
-      "initialStrategy": "testId",
-      "finalStrategy": "testId",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9988931953555775,
-      "confidenceAfter": 0.9991145562844621,
-      "s": 0.9991145562844621,
-      "n": 24,
-      "executionTimeMs": 12,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 15,
       "passed": true
     },
     {
@@ -79,10 +103,16 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9956019534888962,
-      "confidenceAfter": 0.996481562791117,
-      "s": 0.996481562791117,
-      "n": 16,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
       "executionTimeMs": 11,
       "passed": true
     },
@@ -92,24 +122,36 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9994097041896415,
-      "confidenceAfter": 0.9995277633517132,
-      "s": 0.9995277633517132,
-      "n": 25,
-      "executionTimeMs": 10,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 12,
       "passed": true
     },
     {
       "action": "apply a coupon and place the order:1",
       "actionType": "click",
-      "initialStrategy": "testId",
-      "finalStrategy": "testId",
+      "initialStrategy": "role",
+      "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9991145562844621,
-      "confidenceAfter": 0.9992916450275697,
-      "s": 0.9992916450275697,
-      "n": 25,
-      "executionTimeMs": 33,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 46,
       "passed": true
     },
     {
@@ -118,11 +160,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.996481562791117,
-      "confidenceAfter": 0.9971852502328937,
-      "s": 0.9971852502328937,
-      "n": 17,
-      "executionTimeMs": 12,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 13,
       "passed": true
     },
     {
@@ -135,7 +183,13 @@
       "confidenceAfter": 0.9832227840000001,
       "s": 0.9832227840000001,
       "n": 9,
-      "executionTimeMs": 37,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 34,
       "passed": true
     },
     {
@@ -148,6 +202,12 @@
       "confidenceAfter": 0.9832227840000001,
       "s": 0.9832227840000001,
       "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
       "executionTimeMs": 7,
       "passed": true
     },
@@ -161,6 +221,12 @@
       "confidenceAfter": 0.9832227840000001,
       "s": 0.9832227840000001,
       "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
       "executionTimeMs": 7,
       "passed": true
     }

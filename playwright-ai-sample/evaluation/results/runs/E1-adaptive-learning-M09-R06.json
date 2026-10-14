@@ -9,7 +9,7 @@
   "totalTests": 1,
   "totalActions": 11,
   "fallbackCount": 0,
-  "executionTimeMs": 322,
+  "executionTimeMs": 258,
   "strategyUsage": {
     "role": {
       "successes": 10,
@@ -27,11 +27,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.996481562791117,
-      "confidenceAfter": 0.9971852502328937,
-      "s": 0.9971852502328937,
-      "n": 17,
-      "executionTimeMs": 59,
+      "confidenceBefore": 0.9672320000000001,
+      "confidenceAfter": 0.9737856,
+      "s": 0.9737856,
+      "n": 7,
+      "confidenceByStrategy": {
+        "role": 0.9737856,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 50,
       "passed": true
     },
     {
@@ -40,11 +46,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.996481562791117,
-      "confidenceAfter": 0.9971852502328937,
-      "s": 0.9971852502328937,
-      "n": 17,
-      "executionTimeMs": 52,
+      "confidenceBefore": 0.9672320000000001,
+      "confidenceAfter": 0.9737856,
+      "s": 0.9737856,
+      "n": 7,
+      "confidenceByStrategy": {
+        "role": 0.9737856,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 40,
       "passed": true
     },
     {
@@ -53,11 +65,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9971852502328937,
-      "confidenceAfter": 0.9977482001863149,
-      "s": 0.9977482001863149,
-      "n": 18,
-      "executionTimeMs": 16,
+      "confidenceBefore": 0.9672320000000001,
+      "confidenceAfter": 0.9737856,
+      "s": 0.9737856,
+      "n": 7,
+      "confidenceByStrategy": {
+        "role": 0.9737856,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 10,
       "passed": true
     },
     {
@@ -66,11 +84,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9971852502328937,
-      "confidenceAfter": 0.9977482001863149,
-      "s": 0.9977482001863149,
-      "n": 18,
-      "executionTimeMs": 18,
+      "confidenceBefore": 0.9672320000000001,
+      "confidenceAfter": 0.9737856,
+      "s": 0.9737856,
+      "n": 7,
+      "confidenceByStrategy": {
+        "role": 0.9737856,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 11,
       "passed": true
     },
     {
@@ -79,11 +103,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.98926258176,
-      "confidenceAfter": 0.991410065408,
-      "s": 0.991410065408,
-      "n": 12,
-      "executionTimeMs": 18,
+      "confidenceBefore": 0.9672320000000001,
+      "confidenceAfter": 0.9737856,
+      "s": 0.9737856,
+      "n": 7,
+      "confidenceByStrategy": {
+        "role": 0.9737856,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 11,
       "passed": true
     },
     {
@@ -92,11 +122,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9977482001863149,
-      "confidenceAfter": 0.998198560149052,
-      "s": 0.998198560149052,
-      "n": 19,
-      "executionTimeMs": 19,
+      "confidenceBefore": 0.9672320000000001,
+      "confidenceAfter": 0.9737856,
+      "s": 0.9737856,
+      "n": 7,
+      "confidenceByStrategy": {
+        "role": 0.9737856,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 10,
       "passed": true
     },
     {
@@ -105,11 +141,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9977482001863149,
-      "confidenceAfter": 0.998198560149052,
-      "s": 0.998198560149052,
-      "n": 19,
-      "executionTimeMs": 40,
+      "confidenceBefore": 0.9672320000000001,
+      "confidenceAfter": 0.9737856,
+      "s": 0.9737856,
+      "n": 7,
+      "confidenceByStrategy": {
+        "role": 0.9737856,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 37,
       "passed": true
     },
     {
@@ -118,11 +160,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.991410065408,
-      "confidenceAfter": 0.9931280523264001,
-      "s": 0.9931280523264001,
-      "n": 13,
-      "executionTimeMs": 17,
+      "confidenceBefore": 0.9672320000000001,
+      "confidenceAfter": 0.9737856,
+      "s": 0.9737856,
+      "n": 7,
+      "confidenceByStrategy": {
+        "role": 0.9737856,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 12,
       "passed": true
     },
     {
@@ -135,7 +183,13 @@
       "confidenceAfter": 0.9737856,
       "s": 0.9737856,
       "n": 7,
-      "executionTimeMs": 34,
+      "confidenceByStrategy": {
+        "role": 0.9737856,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 38,
       "passed": true
     },
     {
@@ -148,7 +202,13 @@
       "confidenceAfter": 0.9737856,
       "s": 0.9737856,
       "n": 7,
-      "executionTimeMs": 9,
+      "confidenceByStrategy": {
+        "role": 0.9737856,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 7,
       "passed": true
     },
     {
@@ -161,7 +221,13 @@
       "confidenceAfter": 0.9606784000000004,
       "s": 0.9606784000000004,
       "n": 7,
-      "executionTimeMs": 8,
+      "confidenceByStrategy": {
+        "role": 0.7200000000000001,
+        "testId": 0.9606784000000004,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 6,
       "passed": true
     }
   ],

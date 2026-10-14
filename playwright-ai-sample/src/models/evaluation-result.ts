@@ -22,6 +22,7 @@ export interface EvaluationResult {
     confidenceAfter?: number;
     s?: number;
     n?: number;
+    confidenceByStrategy?: Record<string, number>;
     executionTimeMs: number;
     passed: boolean;
   }>;

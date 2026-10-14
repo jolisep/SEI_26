@@ -9,7 +9,7 @@
   "totalTests": 1,
   "totalActions": 11,
   "fallbackCount": 0,
-  "executionTimeMs": 270,
+  "executionTimeMs": 289,
   "strategyUsage": {
     "role": {
       "successes": 11,
@@ -23,11 +23,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9990776627963147,
-      "confidenceAfter": 0.9992621302370519,
-      "s": 0.9992621302370519,
-      "n": 23,
-      "executionTimeMs": 53,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 60,
       "passed": true
     },
     {
@@ -36,11 +42,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9990776627963147,
-      "confidenceAfter": 0.9992621302370519,
-      "s": 0.9992621302370519,
-      "n": 23,
-      "executionTimeMs": 52,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 37,
       "passed": true
     },
     {
@@ -49,11 +61,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9992621302370519,
-      "confidenceAfter": 0.9994097041896415,
-      "s": 0.9994097041896415,
-      "n": 24,
-      "executionTimeMs": 12,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 13,
       "passed": true
     },
     {
@@ -62,11 +80,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9992621302370519,
-      "confidenceAfter": 0.9994097041896415,
-      "s": 0.9994097041896415,
-      "n": 24,
-      "executionTimeMs": 13,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 15,
       "passed": true
     },
     {
@@ -75,11 +99,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9956019534888962,
-      "confidenceAfter": 0.996481562791117,
-      "s": 0.996481562791117,
-      "n": 16,
-      "executionTimeMs": 12,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 11,
       "passed": true
     },
     {
@@ -88,11 +118,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9994097041896415,
-      "confidenceAfter": 0.9995277633517132,
-      "s": 0.9995277633517132,
-      "n": 25,
-      "executionTimeMs": 11,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 12,
       "passed": true
     },
     {
@@ -101,11 +137,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9994097041896415,
-      "confidenceAfter": 0.9995277633517132,
-      "s": 0.9995277633517132,
-      "n": 25,
-      "executionTimeMs": 32,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 47,
       "passed": true
     },
     {
@@ -114,11 +156,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.996481562791117,
-      "confidenceAfter": 0.9971852502328937,
-      "s": 0.9971852502328937,
-      "n": 17,
-      "executionTimeMs": 12,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 14,
       "passed": true
     },
     {
@@ -131,6 +179,12 @@
       "confidenceAfter": 0.9832227840000001,
       "s": 0.9832227840000001,
       "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
       "executionTimeMs": 37,
       "passed": true
     },
@@ -144,7 +198,13 @@
       "confidenceAfter": 0.9832227840000001,
       "s": 0.9832227840000001,
       "n": 9,
-      "executionTimeMs": 7,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 9,
       "passed": true
     },
     {
@@ -157,7 +217,13 @@
       "confidenceAfter": 0.9832227840000001,
       "s": 0.9832227840000001,
       "n": 9,
-      "executionTimeMs": 5,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 9,
       "passed": true
     }
   ],

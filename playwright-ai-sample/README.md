@@ -112,7 +112,7 @@ npm run evaluation:aggregate
 npm run evaluation:charts
 ```
 
-E1 resets the confidence store before each adaptive mutation. E2 runs the
+E1 resets the confidence stores at the start of each experiment and before each adaptive mutation. E2 runs the
 adaptive suite with learning disabled and enabled, both on M02. E3 keeps the
 learning-enabled store between runs so `s`, `n`, and confidence evolve.
 The update is `s' = (1 - alpha) * s + alpha * observation`, with

@@ -13,6 +13,7 @@ export interface ActionEvaluation {
   confidenceAfter?: number;
   s?: number;
   n?: number;
+  confidenceByStrategy?: Record<string, number>;
   executionTimeMs: number;
   passed: boolean;
 }
@@ -93,6 +94,10 @@ export function summarizeAdaptiveEvents(events: LogEvent[]): {
       confidenceAfter: selected?.confidenceAfter as number | undefined ?? failedStrategies.at(-1)?.confidenceAfter as number | undefined,
       s: selected?.s as number | undefined ?? failedStrategies.at(-1)?.s as number | undefined,
       n: selected?.n as number | undefined ?? failedStrategies.at(-1)?.n as number | undefined,
+      confidenceByStrategy: [...actionEventsForIndex]
+        .reverse()
+        .find((event) => event.event === 'strategy_selected')
+        ?.confidenceByStrategy as Record<string, number> | undefined ?? {},
       executionTimeMs: Number(completed?.durationMs ?? 0),
       passed: Boolean(selected)
     };

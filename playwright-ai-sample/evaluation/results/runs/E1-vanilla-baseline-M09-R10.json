@@ -9,7 +9,7 @@
   "totalTests": 1,
   "totalActions": 11,
   "fallbackCount": 0,
-  "executionTimeMs": 5236,
+  "executionTimeMs": 5296,
   "actions": [
     {
       "action": "find and add a product:01",
@@ -17,7 +17,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 43,
+      "executionTimeMs": 62,
       "passed": true
     },
     {
@@ -26,7 +26,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 47,
+      "executionTimeMs": 41,
       "passed": true
     },
     {
@@ -35,7 +35,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 8,
+      "executionTimeMs": 12,
       "passed": true
     },
     {
@@ -44,7 +44,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 6,
+      "executionTimeMs": 11,
       "passed": true
     },
     {
@@ -53,7 +53,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 7,
+      "executionTimeMs": 12,
       "passed": true
     },
     {
@@ -62,7 +62,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 10,
+      "executionTimeMs": 9,
       "passed": true
     },
     {
@@ -71,7 +71,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 32,
+      "executionTimeMs": 51,
       "passed": true
     },
     {
@@ -80,7 +80,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 9,
+      "executionTimeMs": 12,
       "passed": true
     },
     {
@@ -89,7 +89,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 41,
+      "executionTimeMs": 38,
       "passed": true
     },
     {
@@ -98,7 +98,7 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "executionTimeMs": 3,
+      "executionTimeMs": 4,
       "passed": true
     },
     {
@@ -107,7 +107,7 @@
       "initialStrategy": "role",
       "finalStrategy": "failed",
       "attempts": 1,
-      "executionTimeMs": 5008,
+      "executionTimeMs": 5013,
       "passed": false
     }
   ],

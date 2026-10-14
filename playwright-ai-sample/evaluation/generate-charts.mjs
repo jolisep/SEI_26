@@ -11,7 +11,7 @@ await mkdir(output, { recursive: true });
 const mutationLabels = mutations.map((mutation) => mutation.id);
 const e1 = mutationLabels.map((mutation) => ({
   mutation,
-  category: mutation.category,
+  category: mutations.find((m) => m.id === mutation)?.category,
   vanilla: averageFor('vanilla', mutation, 'successRate'),
   adaptive: averageFor('adaptive', mutation, 'successRate')
 }));
@@ -34,19 +34,34 @@ const strategyRows = mutationLabels.map((mutation) => {
   return {
     mutation,
     category: mutation === 'base' ? 'baseline' : mutations.find((item) => item.id === mutation)?.category,
-    ...mergeStrategyUsage(results)
+    ...mergeStrategyUsageByPath(results)
   };
 });
 await writeFile(resolve(output, 'strategy-usage.svg'), groupedStrategyBars(strategyRows), 'utf8');
 
 const confidence = data.results
-  .filter((result) => result.version === 'adaptive' && result.experiment === 'E3' && result.mutation === 'M01')
+  .filter((result) =>
+    result.experiment === 'E1' &&
+    result.version === 'adaptive' &&
+    result.variant === 'learning' &&
+    result.mutation === 'M01'
+  )
   .flatMap((result) => (result.actions ?? []).map((action) => ({
     run: result.run,
-    strategy: action.finalStrategy,
-    confidence: action.confidenceAfter
+    action: action.action,
+    ...Object.fromEntries(
+      Object.entries(action.confidenceByStrategy ?? {})
+        .filter(([strategy]) => strategy === 'role' || strategy === 'testId')
+    )
   })))
-  .filter((item) => typeof item.confidence === 'number');
+  .filter((item) => item.action === 'find and add a product:1')
+  .sort((left, right) => left.run - right.run);
+confidence.unshift({
+  run: 0,
+  action: 'find and add a product:1',
+  role: 0.9,
+  testId: 0.85
+});
 await writeFile(resolve(output, 'confidence-evolution.svg'), lineChart(confidence), 'utf8');
 
 function averageFor(version, mutation, field) {
@@ -72,6 +87,18 @@ function mergeStrategyUsage(results) {
   }, {});
 }
 
+function mergeStrategyUsageByPath(results) {
+  return results
+    .flatMap((result) => result.actions ?? [])
+    .filter((action) => action.passed && typeof action.finalStrategy === 'string')
+    .reduce((all, action) => {
+      const path = action.attempts > 1 ? 'fallback' : 'direct';
+      const key = `${action.finalStrategy}:${path}`;
+      all[key] = (all[key] ?? 0) + 1;
+      return all;
+    }, {});
+}
+
 function groupedBars(rows, series, field, colors, label, labels) {
   const groupWidth = 78;
   const width = Math.max(820, rows.length * groupWidth + 70);
@@ -91,23 +118,48 @@ function groupedBars(rows, series, field, colors, label, labels) {
 }
 
 function groupedStrategyBars(rows) {
+  const paths = ['direct', 'fallback'];
   const strategies = ['role', 'testId', 'css', 'xpath'];
-  const colors = ['#1b5e20', '#388e3c', '#66bb6a', '#a5d6a7'];
+  const colors = { direct: '#555', fallback: '#aaa' };
   const groupWidth = 78;
   const axisX = 58;
   const chartBottom = 270;
   const chartTop = 70;
-  const maxValue = Math.max(...rows.flatMap((row) => strategies.map((strategy) => Number(row[strategy]?.successes ?? 0))), 1);
-  const width = Math.max(820, rows.length * groupWidth + 70);
-  const bars = rows.map((row, index) => strategies.map((strategy, strategyIndex) => {
-    const usage = row[strategy] ?? { successes: 0 };
-    const height = Math.round((Number(usage.successes ?? 0) / maxValue) * (chartBottom - chartTop));
-    const x = axisX + 15 + index * groupWidth + strategyIndex * 16;
-    return `<rect x="${x}" y="${chartBottom - height}" width="12" height="${height}" fill="${colors[strategyIndex]}"/>`;
+  const series = strategies.flatMap((strategy) => paths.map((path) => `${strategy}:${path}`));
+  const rawValue = (row, strategy, path) => {
+    const raw = row[`${strategy}:${path}`];
+    return typeof raw === 'number' ? raw : Number(raw?.successes ?? 0);
+  };
+  const maxValue = Math.max(...rows.flatMap((row) => strategies.map((strategy) =>
+    paths.reduce((sum, path) => sum + rawValue(row, strategy, path), 0)
+  )), 1);
+  const width = Math.max(1180, rows.length * groupWidth + 70);
+  const bars = rows.map((row, rowIndex) => strategies.map((strategy, strategyIndex) => {
+    const x = axisX + 8 + rowIndex * groupWidth + strategyIndex * 16;
+    let y = chartBottom;
+    return paths.map((path) => {
+      const value = rawValue(row, strategy, path);
+      const height = Math.round((value / maxValue) * (chartBottom - chartTop));
+      y -= height;
+      const labelOffset = path === 'direct' ? 4 : 16;
+      const labelY = Math.max(chartTop - labelOffset, y - labelOffset);
+      const label = value > 0
+        ? `<text x="${x + 7}" y="${labelY}" text-anchor="middle" font-size="11" font-weight="bold">${value}</text>`
+        : '';
+      return `<rect x="${x}" y="${y}" width="14" height="${height}" fill="${colors[path]}"/>${label}`;
+    }).join('');
   }).join('')).join('');
-  const legend = strategies.map((strategy, index) => `<rect x="${45 + index * 90}" y="30" width="12" height="12" fill="${colors[index]}"/><text x="${62 + index * 90}" y="40">${strategy}</text>`).join('');
-  const xLabels = rows.map((row, index) => `<text x="${axisX + 15 + index * groupWidth + 24}" y="295" text-anchor="middle">${index === 0 ? 'Base' : row.mutation}</text>`).join('');
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="340"><text x="${width / 2}" y="330" text-anchor="middle">Mutation</text><text x="12" y="${(chartTop + chartBottom) / 2}" text-anchor="middle" transform="rotate(-90 12 ${(chartTop + chartBottom) / 2})">Strategy selections</text>${yTicks(chartTop, chartBottom, Math.ceil(maxValue / 5), 0, maxValue, false, axisX, width - 20)}<line x1="${axisX}" y1="${chartBottom}" x2="${width - 20}" y2="${chartBottom}" stroke="#000"/>${legend}${bars}${xLabels}</svg>`;
+  const legend = series.map((key, index) => {
+    const [, path] = key.split(':');
+    const column = index % 4;
+    const row = Math.floor(index / 4);
+    const x = 25 + column * 220;
+    const y = 25 + row * 22;
+    const strategy = key.split(':')[0];
+    return `<rect x="${x}" y="${y}" width="12" height="12" fill="${colors[path]}"/><text x="${x + 17}" y="${y + 10}" font-size="11">${strategy} ${path === 'direct' ? 'direct (dark)' : 'fallback (light)'}</text>`;
+  }).join('');
+  const xLabels = rows.map((row, index) => `<text x="${axisX + 8 + index * groupWidth + 28}" y="295" text-anchor="middle">${row.mutation === 'base' ? 'Base' : row.mutation}</text>`).join('');
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="340"><text x="${width / 2}" y="330" text-anchor="middle">Mutation</text><text x="12" y="${(chartTop + chartBottom) / 2}" text-anchor="middle" transform="rotate(-90 12 ${(chartTop + chartBottom) / 2})">Strategy selections</text>${yTicks(chartTop, chartBottom, Math.max(1, Math.ceil(maxValue / 5)), 0, maxValue, false, axisX, width - 20)}<line x1="${axisX}" y1="${chartBottom}" x2="${width - 20}" y2="${chartBottom}" stroke="#000"/>${legend}${bars}${xLabels}</svg>`;
 }
 
 function categoryBands(rows, groupWidth, y, axisX) {
@@ -136,17 +188,10 @@ function yTicks(top, bottom, step, min, max, percentage, axisX, rightX) {
 }
 
 function lineChart(rows) {
-  const byRunAndStrategy = new Map();
-  for (const row of rows) {
-    const key = `${row.run}|${row.strategy}`;
-    const values = byRunAndStrategy.get(key) ?? [];
-    values.push(row.confidence);
-    byRunAndStrategy.set(key, values);
-  }
-  const aggregated = [...byRunAndStrategy.entries()].map(([key, values]) => {
-    const [run, strategy] = key.split('|');
-    return { run: Number(run), strategy, confidence: values.reduce((sum, value) => sum + value, 0) / values.length };
-  });
+  const points = rows.flatMap((row) => Object.entries(row)
+    .filter(([key, value]) => !['run', 'action'].includes(key) && typeof value === 'number')
+    .map(([strategy, confidence]) => ({ run: row.run, strategy, confidence })));
+  const aggregated = points;
   const maxRun = Math.max(...aggregated.map((row) => row.run), 1);
   const width = Math.max(640, 80 + maxRun * 55);
   const chartLeft = 58;
@@ -162,8 +207,7 @@ function lineChart(rows) {
     return `<polyline points="${points}" fill="none" stroke="${seriesIndex ? '#888' : '#222'}" stroke-width="2"/>`;
   }).join('');
   const legend = series.map((strategy, index) => `<line x1="${width - 180 + index * 90}" y1="18" x2="${width - 160 + index * 90}" y2="18" stroke="${index ? '#888' : '#222'}" stroke-width="2"/><text x="${width - 155 + index * 90}" y="22">${strategy}</text>`).join('');
-  const xTicks = Array.from({ length: maxRun }, (_, index) => {
-    const run = index + 1;
+  const xTicks = Array.from({ length: maxRun + 1 }, (_, run) => {
     const x = chartLeft + run * 55;
     return `<line x1="${x}" y1="${chartBottom}" x2="${x}" y2="${chartBottom + 5}" stroke="#000"/><text x="${x}" y="302" text-anchor="middle">${run}</text>`;
   }).join('');
@@ -175,5 +219,5 @@ function lineChart(rows) {
   const crossing = crossingRun
     ? `<line x1="${chartLeft + crossingRun * 55}" y1="${chartTop}" x2="${chartLeft + crossingRun * 55}" y2="${chartBottom}" stroke="#555" stroke-dasharray="4 4"/><text x="${chartLeft + crossingRun * 55 + 5}" y="${chartTop + 14}" font-size="11">crossing: run ${crossingRun}</text>`
     : '';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="340"><text x="${width / 2}" y="330" text-anchor="middle">Run</text><text x="12" y="175" text-anchor="middle" transform="rotate(-90 12 175)">Confidence</text>${yTicks(chartTop, chartBottom, 0.2, 0, 1, false, chartLeft, chartRight)}<line x1="${chartLeft}" y1="${chartBottom}" x2="${chartRight}" y2="${chartBottom}" stroke="#000"/>${xTicks}<line x1="${chartLeft}" y1="${chartTop}" x2="${chartLeft}" y2="${chartBottom}" stroke="#000"/>${legend}${crossing}${paths}</svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="340"><text x="${width / 2}" y="330" text-anchor="middle">Run (Add to cart)</text><text x="12" y="175" text-anchor="middle" transform="rotate(-90 12 175)">Confidence</text>${yTicks(chartTop, chartBottom, 0.2, 0, 1, false, chartLeft, chartRight)}<line x1="${chartLeft}" y1="${chartBottom}" x2="${chartRight}" y2="${chartBottom}" stroke="#000"/>${xTicks}<line x1="${chartLeft}" y1="${chartTop}" x2="${chartLeft}" y2="${chartBottom}" stroke="#000"/>${legend}${crossing}${paths}</svg>`;
 }

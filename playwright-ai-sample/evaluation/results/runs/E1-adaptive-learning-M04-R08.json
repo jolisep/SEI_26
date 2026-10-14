@@ -9,7 +9,7 @@
   "totalTests": 1,
   "totalActions": 11,
   "fallbackCount": 0,
-  "executionTimeMs": 341,
+  "executionTimeMs": 308,
   "strategyUsage": {
     "role": {
       "successes": 11,
@@ -23,11 +23,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9990776627963147,
-      "confidenceAfter": 0.9992621302370519,
-      "s": 0.9992621302370519,
-      "n": 23,
-      "executionTimeMs": 85,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 69,
       "passed": true
     },
     {
@@ -36,10 +42,16 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9990776627963147,
-      "confidenceAfter": 0.9992621302370519,
-      "s": 0.9992621302370519,
-      "n": 23,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
       "executionTimeMs": 47,
       "passed": true
     },
@@ -49,11 +61,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9992621302370519,
-      "confidenceAfter": 0.9994097041896415,
-      "s": 0.9994097041896415,
-      "n": 24,
-      "executionTimeMs": 17,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 13,
       "passed": true
     },
     {
@@ -62,11 +80,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9992621302370519,
-      "confidenceAfter": 0.9994097041896415,
-      "s": 0.9994097041896415,
-      "n": 24,
-      "executionTimeMs": 20,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 16,
       "passed": true
     },
     {
@@ -75,11 +99,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9956019534888962,
-      "confidenceAfter": 0.996481562791117,
-      "s": 0.996481562791117,
-      "n": 16,
-      "executionTimeMs": 17,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 14,
       "passed": true
     },
     {
@@ -88,11 +118,17 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9994097041896415,
-      "confidenceAfter": 0.9995277633517132,
-      "s": 0.9995277633517132,
-      "n": 25,
-      "executionTimeMs": 15,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 12,
       "passed": true
     },
     {
@@ -101,10 +137,16 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.9994097041896415,
-      "confidenceAfter": 0.9995277633517132,
-      "s": 0.9995277633517132,
-      "n": 25,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
       "executionTimeMs": 40,
       "passed": true
     },
@@ -114,10 +156,16 @@
       "initialStrategy": "role",
       "finalStrategy": "role",
       "attempts": 1,
-      "confidenceBefore": 0.996481562791117,
-      "confidenceAfter": 0.9971852502328937,
-      "s": 0.9971852502328937,
-      "n": 17,
+      "confidenceBefore": 0.97902848,
+      "confidenceAfter": 0.9832227840000001,
+      "s": 0.9832227840000001,
+      "n": 9,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
       "executionTimeMs": 14,
       "passed": true
     },
@@ -131,7 +179,13 @@
       "confidenceAfter": 0.9832227840000001,
       "s": 0.9832227840000001,
       "n": 9,
-      "executionTimeMs": 38,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 34,
       "passed": true
     },
     {
@@ -144,7 +198,13 @@
       "confidenceAfter": 0.9832227840000001,
       "s": 0.9832227840000001,
       "n": 9,
-      "executionTimeMs": 10,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 7,
       "passed": true
     },
     {
@@ -157,7 +217,13 @@
       "confidenceAfter": 0.9832227840000001,
       "s": 0.9832227840000001,
       "n": 9,
-      "executionTimeMs": 8,
+      "confidenceByStrategy": {
+        "role": 0.9832227840000001,
+        "testId": 0.85,
+        "css": 0.6,
+        "xpath": 0.4
+      },
+      "executionTimeMs": 7,
       "passed": true
     }
   ],
