@@ -13,159 +13,25 @@ skinparam database {
   BackgroundColor #FFF4D6
   BorderColor #A16207
 }
-skinparam package {
-  BackgroundColor #F1F5F9
-  BorderColor #64748B
-}
 
-title AI-Driven Playwright Test Architecture
-caption JSON-defined tests adapt to UI changes through ranked locator strategies
+database "test-suite.json\n(test cases + locator strategies)" as suite
+component "JSON-driven Test Registration" as registration
+component "AdaptiveTestRunner" as runner
+component "StrategySelector\n(confidence ranking + fallback)" as selector
+database "ConfidenceStore\n(persistent strategy confidence)" as confidence
+component "RecoveryManager\n(bounded retry + failure artifacts)" as recovery
+component "StructuredEventLogger" as logger
 
-actor "CI/CD Pipeline" as cicd
-actor "LLM / UI Change Analyzer\n(offline, not evaluated)" as llm
-
-database "test-suite.json\n(testName, steps, actions, strategies[])" as json
-
-package "Test Definition Layer" {
-  component "JsonTestSuiteReader\n(readSync + validation)" as reader
-  component "Test Suite Model" as model
-}
-
-package "Execution Orchestration" {
-  component "Dynamic Test Registration Loop\nfor (const testCase of suite.tests)" as registrar
-  component "Playwright Test Runner\n(test(testCase.testName, ...))" as playwrightRunner
-  component "AdaptiveTestRunner\n(run(page, testCase))" as runner
-  component "ActionAdapterFactory" as factory
-  component "StrategySelector\n(rank + confidence + fallback)" as selector
-  database "ConfidenceStore\n(persisted s, n per mutation/action/strategy)" as confidence
-}
-
-package "Adapter Layer" {
-  interface "IPlaywrightActionAdapter" as adapter
-  component "ClickActionAdapter" as clickAdapter
-  component "FillActionAdapter" as fillAdapter
-  component "AssertActionAdapter" as assertAdapter
-  component "WaitActionAdapter" as waitAdapter
-}
-
-package "Recovery Layer" {
-  component "RecoveryManager\n(retry policy + limits)" as recovery
-  component "Retry / Re-navigation" as retry
-  component "Context Reset\n(page reload or new context)" as reset
-  component "Failure Artifact Capture\n(trace, screenshot, DOM)" as artifacts
-}
-
-package "Logging Layer" {
-  component "StructuredEventLogger" as logger
-  component "Log Correlation Context\n(testName, step, action, attempt)" as correlation
-  database "Log Sink\n(console, file, CI collector)" as logSink
-}
-
-package "Playwright Runtime" {
-  component "BrowserContext" as context
-  component "Page" as page
-  component "Locator API" as locator
-  component "Browser" as browser
-}
-
-component "Application Under Test\n(Web UI)" as app
-database "Execution Report\n(attempts, selected strategy, evidence)" as report
-
-cicd --> playwrightRunner : starts suite
-llm ..> json : offline selector suggestions\nafter UI analysis\n(not evaluated)
-json --> reader : readSync()
-reader --> model : parses and validates
-model --> registrar : exposes tests[]
-registrar --> playwrightRunner : registers one test\nper testCase
-playwrightRunner --> runner : invokes each testCase
-runner --> confidence : loads confidence\nbefore each run
-runner --> factory : creates adapter\nfor each action
-factory --> selector : resolves ranked strategies
-selector --> confidence : reads scores before ranking\nupdates s/n after outcome
-factory ..> adapter : returns
-selector --> adapter : tries strategies\nuntil success
-clickAdapter ..|> adapter
-fillAdapter ..|> adapter
-assertAdapter ..|> adapter
-waitAdapter ..|> adapter
-adapter --> locator : uses selected locator
-adapter --> page : delegates Playwright method
-browser --> context
-context --> page
-page --> app : drives UI
-runner --> report : records outcome
-selector --> report : records strategy\nand fallback attempts
-runner --> recovery : handles action failure
-selector --> recovery : reports exhausted\nlocator strategies
-adapter --> recovery : reports Playwright\naction errors
-recovery --> retry : retries recoverable failure
-recovery --> reset : resets stale page/context
-recovery --> artifacts : captures terminal failure
-retry --> runner : re-executes action
-reset --> context : refreshes runtime state
-artifacts --> report : attaches failure evidence
-
-registrar --> logger : test registration event
-runner --> logger : test / step / action events
-selector --> logger : strategy attempt + result
-adapter --> logger : Playwright call + result
-recovery --> logger : retry / reset / terminal failure
-logger --> correlation : enriches event context
-correlation --> logSink : writes structured message
-
-note right of selector
-  Runtime ranking:
-  strategies are ordered by the
-  persisted confidence score.
-
-  Initial priors come from the JSON.
-  A failed strategy falls back to the next
-  ranked strategy. Successful and failed
-  outcomes update the ConfidenceStore.
-end note
-
-note right of confidence
-  Read before each run.
-  Updated after each strategy outcome
-  using the configured learning rule.
-  The store is persisted between runs
-  when the experiment enables learning.
-end note
-
-note right of registrar
-  The JSON controls both:
-  - test name
-  - test behavior
-
-  Adding a test object to the JSON creates
-  a new Playwright test automatically.
-end note
-
-note right of recovery
-  Recovery is bounded and observable:
-  1. Try the next locator strategy.
-  2. Retry the action when transient.
-  3. Re-navigate or reset context when stale.
-  4. Capture artifacts and fail clearly.
-end note
-
-note bottom of logger
-  Every event should include structured fields such as:
-  testName, stepName, actionType, strategyKind,
-  confidence, attempt, duration, outcome, error.
-end note
-
-note bottom of adapter
-  Adapter Pattern: isolates test definitions from Playwright API details.
-  Factory Pattern: maps action.type to the correct adapter.
-  JSON: externalizes test names and behavior so an LLM can update
-  selectors or add cases without changing the test file.
-end note
-
-note bottom of llm
-  The sample does not call or evaluate an LLM.
-  This connection documents a possible offline
-  source of selector updates only.
-end note
+suite --> registration : defines tests\nand strategies
+registration --> runner : registers tests\nfrom JSON
+runner --> selector : resolves each action
+selector --> confidence : reads and updates\nstrategy confidence
+selector --> recovery : exhausted strategies
+runner --> recovery : action failure
+recovery --> runner : retries action
+registration --> logger : registration events
+runner --> logger : execution events
+selector --> logger : strategy outcomes
+recovery --> logger : recovery events
 
 @enduml
